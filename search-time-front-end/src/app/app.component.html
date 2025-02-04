@@ -1,6 +1,14 @@
 
 <main class="main">
-  <h1 class="text-center mt-5">Search results</h1>
+  <h1 class="text-center mt-5">
+    It's Search Time!
+  </h1>
+
+  <div class="text-center mt-5">
+    <button (click)="fetchSearchResults()">
+      Search
+    </button>
+  </div>
 
   <search-results-table></search-results-table>
 </main>
