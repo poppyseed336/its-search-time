@@ -1,6 +1,13 @@
 
 <main class="main">
   <div class="content">
-    <search-result-item *ngFor="let item of searchResultItems" [resultItem]="item"></search-result-item>
+    <div *ngIf="searchResultItems && searchResultItems.length > 0; else noResults">
+      <search-result-item
+        *ngFor="let item of searchResultItems"
+        [resultItem]="item">
+      </search-result-item>
+    </div>
+
+    <ng-template #noResults>No results found</ng-template>
   </div>
 </main>

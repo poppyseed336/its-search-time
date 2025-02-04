@@ -4,11 +4,11 @@ import { SearchResultItem } from '../search-result-item/search-result-item.compo
 import { DataService } from '../services/data.service';
 import { SearchService } from '../services/search.service';
 import { Item } from '../models/item.model';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'search-results-table',
-  imports: [SearchResultItem, NgFor],
+  imports: [SearchResultItem, NgFor, NgIf],
   templateUrl: './search-results-table.component.html'
 })
 export class SearchResultsTable {
