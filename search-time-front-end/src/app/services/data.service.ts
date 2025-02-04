@@ -12,7 +12,7 @@ export class DataService {
 
   constructor() { }
 
-  getSearchResults(): Observable<Item[]> {
+  getSearchResults$(): Observable<Item[]> {
     return this.searchResults.asObservable();
   }
 

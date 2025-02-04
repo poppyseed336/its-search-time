@@ -17,9 +17,9 @@ export class SearchResultsTable {
   constructor(private dataService: DataService, private searchService: SearchService) { }
 
   ngOnInit(): void {
-    this.searchService.getSearchResults();  // to-do: will eventually need to be awaited once this service function becomes an async http call
+    this.searchService.fetchSearchResults();  // to-do: will eventually need to be awaited once this service function becomes an async http call
 
-    this.dataService.getSearchResults().subscribe(updatedData => {
+    this.dataService.getSearchResults$().subscribe(updatedData => {
       this.searchResultItems = updatedData;
     });
   }

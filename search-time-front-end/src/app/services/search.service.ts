@@ -13,7 +13,7 @@ export class SearchService {
 
   constructor(private dataService: DataService) { }
 
-  getSearchResults() {
+  fetchSearchResults() {
     // to-do: For now this mocks a remote API call. Later we'll add an actual http call and make this function async.
     let results = [
       { id: 1167, title: 'Guitar', color: 'blue' } as Item,
