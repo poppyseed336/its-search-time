@@ -1,0 +1,23 @@
+
+<main class="main">
+  <div class="content">
+    <div *ngIf="searchResultItems && searchResultItems.length > 0; else noResults">
+      <table class="table table-striped w-50 mx-auto mt-5">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Color</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of searchResultItems">
+            <td>{{ item.title }}</td>
+            <td>{{ item.color }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ng-template #noResults>No results found</ng-template>
+  </div>
+</main>

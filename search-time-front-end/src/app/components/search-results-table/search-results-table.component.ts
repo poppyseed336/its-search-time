@@ -1,14 +1,13 @@
 
 import { Component } from '@angular/core';
-import { SearchResultItem } from '../search-result-item/search-result-item.component';
-import { DataService } from '../services/data.service';
-import { SearchService } from '../services/search.service';
-import { Item } from '../models/item.model';
 import { NgFor, NgIf } from '@angular/common';
+import { DataService } from '../../services/data.service';
+import { SearchService } from '../../services/search.service';
+import { Item } from '../../models/item.model';
 
 @Component({
   selector: 'search-results-table',
-  imports: [SearchResultItem, NgFor, NgIf],
+  imports: [NgFor, NgIf],
   templateUrl: './search-results-table.component.html'
 })
 export class SearchResultsTable {

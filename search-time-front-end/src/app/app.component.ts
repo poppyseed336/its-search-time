@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { SearchResultsTable } from './search-results-table/search-results-table.component';
+import { SearchResultsTable } from './components/search-results-table/search-results-table.component';
 
 @Component({
   selector: 'app-root',
