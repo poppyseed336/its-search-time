@@ -1,6 +1,6 @@
 
 <main class="main">
   <div class="content">
-    <search-result-item></search-result-item>
+    <search-result-item *ngFor="let item of searchResultItems" [resultItem]="item"></search-result-item>
   </div>
 </main>

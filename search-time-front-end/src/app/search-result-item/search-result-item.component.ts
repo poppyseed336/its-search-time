@@ -1,10 +1,12 @@
 
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Item } from '../models/item.model';
 
 @Component({
   selector: 'search-result-item',
   templateUrl: './search-result-item.component.html'
 })
+
 export class SearchResultItem {
-  title = 'search-result-item';
+  @Input() resultItem: Item = { id: 0, title: '', color: '' };
 }
