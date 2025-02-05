@@ -14,7 +14,7 @@ export class AppComponent {
 
   constructor(private searchService: SearchService) { }
 
-  fetchSearchResults() {
-    this.searchService.fetchSearchResults();  // to-do: will eventually need to be awaited once this service function becomes an async method
+  async fetchSearchResults() {
+    await this.searchService.fetchSearchResults();
   }
 }
