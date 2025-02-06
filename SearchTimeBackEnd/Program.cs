@@ -1,11 +1,11 @@
 
-using System;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer;
+using SearchTimeBackEnd.Services;
 using SearchTimeBackEnd.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddScoped<ISearchService, SearchService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
