@@ -2,6 +2,8 @@
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace SearchTimeBackEnd.Migrations
 {
     /// <inheritdoc />
@@ -22,6 +24,24 @@ namespace SearchTimeBackEnd.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SearchResultItems", x => x.Id);
+                });
+
+            migrationBuilder.InsertData(
+                table: "SearchResultItems",
+                columns: new[] { "Id", "Color", "Title" },
+                values: new object[,]
+                {
+                    { 1010, "orange", "President" },
+                    { 1011, "red", "Chapstick" },
+                    { 1167, "blue", "Guitar" },
+                    { 1919, "green", "Beverage" },
+                    { 2123, "red", "Lifeguard" },
+                    { 2424, "red", "Dinosaur" },
+                    { 3360, "red", "Food" },
+                    { 6552, "purple", "Dress" },
+                    { 6666, "purple", "Tunnel" },
+                    { 7777, "red", "Planet" },
+                    { 9992, "green", "Video Game" }
                 });
         }
 
