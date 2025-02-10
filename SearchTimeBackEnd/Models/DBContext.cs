@@ -2,6 +2,7 @@
 namespace SearchTimeBackEnd.Models
 {
     using Microsoft.EntityFrameworkCore;
+    using SearchTimeBackEnd.Models.Entities;
 
     public class AppDbContext : DbContext
     {

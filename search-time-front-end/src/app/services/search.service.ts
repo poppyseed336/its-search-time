@@ -12,7 +12,7 @@ import { Item } from '../models/item.model';
 export class SearchService {
   private searchResults: BehaviorSubject<Item[]> = new BehaviorSubject<Item[]>([]);
 
-  private baseUrl = 'https://localhost:32771';
+  private baseUrl = 'https://localhost:32773';
   private searchUrl = `${ this.baseUrl }/Search`;
 
   constructor(private dataService: DataService) { }

@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SearchTimeBackEnd.Models;
+using SearchTimeBackEnd.Models.Entities;
+using SearchTimeBackEnd.Models.ViewModels;
 
 namespace SearchTimeBackEnd.Services
 {
@@ -14,12 +16,16 @@ namespace SearchTimeBackEnd.Services
             _appDbContext = context;
         }
 
-        public async Task<List<SearchResultItem>> GetSearchResults()
+        public async Task<SearchResultsViewModel> GetSearchResults()
         {
             try
             {
                 var searchResults = await _appDbContext.SearchResultItems.ToListAsync();
-                return searchResults;
+                var result = new SearchResultsViewModel()
+                {
+                    SearchResults = searchResults
+                };
+                return result;
             }
             catch (Exception exception)
             {

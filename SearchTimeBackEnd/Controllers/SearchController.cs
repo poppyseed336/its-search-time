@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using SearchTimeBackEnd.Models;
+using SearchTimeBackEnd.Models.Entities;
+using SearchTimeBackEnd.Models.ViewModels;
 using SearchTimeBackEnd.Services;
 
 namespace SearchTimeBackEnd.Controllers
@@ -18,10 +19,9 @@ namespace SearchTimeBackEnd.Controllers
         }
 
         [HttpGet(Name = "Search")]
-        public async Task<ActionResult<IEnumerable<SearchResultItem>>> Get()
+        public async Task<ActionResult<SearchResultsViewModel>> Get()
         {
-            List<SearchResultItem> results = await _searchService.GetSearchResults();
-
+            SearchResultsViewModel results = await _searchService.GetSearchResults();
             return Ok(results);
         }
     }

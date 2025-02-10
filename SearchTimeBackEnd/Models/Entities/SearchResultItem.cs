@@ -1,4 +1,4 @@
-namespace SearchTimeBackEnd.Models
+namespace SearchTimeBackEnd.Models.Entities
 {
     public class SearchResultItem
     {
