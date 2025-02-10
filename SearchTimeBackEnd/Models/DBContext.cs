@@ -11,7 +11,7 @@
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer(
-                    @"Server=localhost,1433;Database=SearchTimeBackEnd;User Id=sa;Password=suchaS+r0ngp@ssword;ConnectRetryCount=0;TrustServerCertificate=True;");
+                    @"Server=localhost,1433;Database=search-time-sql-container;User Id=sa;Password=suchaS+r0ngp@ssword;ConnectRetryCount=0;TrustServerCertificate=True;");
             }
         }
 

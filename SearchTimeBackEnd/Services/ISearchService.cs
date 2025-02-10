@@ -4,6 +4,6 @@ namespace SearchTimeBackEnd.Services
 {
     public interface ISearchService
     {
-        public List<SearchResultItem> GetSearchResults();
+        public Task<List<SearchResultItem>> GetSearchResults();
     }
 }

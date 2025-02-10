@@ -18,9 +18,11 @@ namespace SearchTimeBackEnd.Controllers
         }
 
         [HttpGet(Name = "Search")]
-        public ActionResult<IEnumerable<SearchResultItem>> Get()
+        public async Task<ActionResult<IEnumerable<SearchResultItem>>> Get()
         {
-            return Ok(_searchService.GetSearchResults());
+            List<SearchResultItem> results = await _searchService.GetSearchResults();
+
+            return Ok(results);
         }
     }
 }
