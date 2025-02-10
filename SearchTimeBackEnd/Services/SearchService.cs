@@ -21,19 +21,24 @@ namespace SearchTimeBackEnd.Services
         {
             try
             {
-                var searchResults = await _appDbContext.SearchResultItems
+                var searchResults = _appDbContext.SearchResultItems
                     .AsQueryable()
                     .Where(searchResultItem =>
                         searchResultItem.Title.ToLower().Contains(title.ToLower()) &&
                         (color.Equals("") || searchResultItem.Color.ToLower().Equals(color)))
-                    .OrderBy(searchResultItem => searchResultItem.Id)
+                    .OrderBy(searchResultItem => searchResultItem.Id);
+
+                var numberOfResults = searchResults.Count();
+
+                var paginatedSearchResults = await searchResults
                     .Skip((pageNumber - 1) * PAGE_SIZE)
                     .Take(PAGE_SIZE)
                     .ToListAsync();
 
                 var result = new SearchResultsViewModel()
                 {
-                    SearchResults = searchResults
+                    SearchResults = paginatedSearchResults,
+                    NumberOfResults = numberOfResults
                 };
 
                 return result;

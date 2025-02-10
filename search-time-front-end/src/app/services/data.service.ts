@@ -2,24 +2,28 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Item } from '../models/item.model';
+import { SearchResults } from '../models/searchResults.model';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class DataService {
-  private searchResults: BehaviorSubject<Item[]> = new BehaviorSubject<Item[]>([]);
+  private searchResults: BehaviorSubject<SearchResults> = new BehaviorSubject<SearchResults>({
+    SearchResults: [],
+    NumberOfResults: 0
+  });
   private pageNumber: number = 1;
   private title: string = "";
   private color: string = "";
 
   constructor() { }
 
-  getSearchResults$(): Observable<Item[]> {
+  getSearchResults$(): Observable<SearchResults> {
     return this.searchResults.asObservable();
   }
 
-  setSearchResults(newValue: Item[]) {
+  setSearchResults(newValue: SearchResults) {
     this.searchResults.next(newValue);
   }
 
