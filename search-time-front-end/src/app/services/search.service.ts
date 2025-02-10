@@ -1,17 +1,13 @@
 
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import axios from 'axios';
 import { DataService } from './data.service';
-import { Item } from '../models/item.model';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class SearchService {
-  private searchResults: BehaviorSubject<Item[]> = new BehaviorSubject<Item[]>([]);
-
   private baseUrl = 'https://localhost:32773';
   private searchUrl = `${ this.baseUrl }/Search`;
 
@@ -19,13 +15,19 @@ export class SearchService {
 
   fetchSearchResults() {
 
-    axios.get(this.searchUrl)
-      .then((response) => {
+    axios.get(this.searchUrl, {
+      params: {
+        pageNumber: this.dataService.getPageNumber(),
+        title: this.dataService.getTitle(),
+        color: this.dataService.getColor()
+      }
+    })
+    .then((response) => {
         this.dataService.setSearchResults(response.data);
-      })
-      .catch((error) => {
+    })
+    .catch((error) => {
         console.error('Error executing search: ', error);
         throw error;
-      });
+    });
   }
 }

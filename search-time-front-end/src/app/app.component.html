@@ -1,16 +1,47 @@
 
 <main class="main">
-  <h1 class="text-center mt-5">
-    It's Search Time!
-  </h1>
+ <h1 class="text-center mt-5">
+   It's Search Time!
+ </h1>
 
-  <div class="text-center mt-5">
-    <button (click)="fetchSearchResults()">
-      Search
-    </button>
+ <div class="mx-auto w-25 mt-4">
+  <div class="form-group text-center">
+   <label class="mb-3">
+    (All search fields are optional)
+   </label>
+
+   <label class="fw-bold">
+    Title:
+   </label>
+
+   <div> 
+    <input />
+   </div>
+
+   <label class="fw-bold mt-4">
+    Color:
+   </label>
+
+   <div>
+    <select [(ngModel)]="color">
+     <option value="">Select a color</option>
+     <option *ngFor="let color of colorOptions">
+      {{color}}
+     </option>
+    </select>
+   </div>
   </div>
+    
+  <br />
 
-  <search-results-table></search-results-table>
+  <div class="text-center">
+   <button (click)="fetchSearchResults()" class="mt-3 mb-2">
+    Search
+   </button>
+  </div>
+ </div>
+
+ <search-results-table></search-results-table>
 </main>
 
 <router-outlet />

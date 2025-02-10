@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using SearchTimeBackEnd.Models;
-using SearchTimeBackEnd.Models.Entities;
 using SearchTimeBackEnd.Models.ViewModels;
 
 namespace SearchTimeBackEnd.Services
@@ -10,21 +9,33 @@ namespace SearchTimeBackEnd.Services
         private readonly ILogger<SearchService> _logger;
         private readonly AppDbContext _appDbContext;
 
+        private const int PAGE_SIZE = 10;
+
         public SearchService(ILogger<SearchService> logger, AppDbContext context)
         {
             _logger = logger;
             _appDbContext = context;
         }
 
-        public async Task<SearchResultsViewModel> GetSearchResults()
+        public async Task<SearchResultsViewModel> GetSearchResults(int pageNumber, string title, string color)
         {
             try
             {
-                var searchResults = await _appDbContext.SearchResultItems.ToListAsync();
+                var searchResults = await _appDbContext.SearchResultItems
+                    .AsQueryable()
+                    .Where(searchResultItem =>
+                        searchResultItem.Title.ToLower().Contains(title.ToLower()) &&
+                        (color.Equals("") || searchResultItem.Color.ToLower().Equals(color)))
+                    .OrderBy(searchResultItem => searchResultItem.Id)
+                    .Skip((pageNumber - 1) * PAGE_SIZE)
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+
                 var result = new SearchResultsViewModel()
                 {
                     SearchResults = searchResults
                 };
+
                 return result;
             }
             catch (Exception exception)
