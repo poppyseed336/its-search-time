@@ -15,11 +15,13 @@ import { FormsModule } from '@angular/forms';
 export class AppComponent {
   title = 'search-time-front-end';
   colorOptions = ["black", "blue", "green", "purple", "red"];
+  titleOfSearchItem = "";
   color = "";
 
   constructor(private searchService: SearchService, private dataService: DataService) { }
 
   async fetchSearchResults() {
+    this.dataService.setTitle(this.titleOfSearchItem);
     this.dataService.setColor(this.color);
     await this.searchService.fetchSearchResults();
   }
