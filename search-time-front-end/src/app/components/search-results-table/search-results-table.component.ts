@@ -18,7 +18,7 @@ export class SearchResultsTable {
 
   ngOnInit(): void {
     this.dataService.getSearchResults$().subscribe(updatedData => {
-      this.searchResultItems = updatedData.SearchResults;
+      this.searchResultItems = updatedData.searchResults;
     });
   }
 }

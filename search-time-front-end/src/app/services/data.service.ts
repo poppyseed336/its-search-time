@@ -10,8 +10,8 @@ import { SearchResults } from '../models/searchResults.model';
 
 export class DataService {
   private searchResults: BehaviorSubject<SearchResults> = new BehaviorSubject<SearchResults>({
-    SearchResults: [],
-    NumberOfResults: 0
+    searchResults: [],
+    numberOfResults: 0
   });
   private pageNumber: number = 1;
   private title: string = "";
