@@ -18,6 +18,26 @@
           </tr>
         </tbody>
       </table>
+
+      <div *ngIf="getPaginationArray$() | async as paginationArray" class="row w-50 mx-auto mt-4 mb-5">
+        <div *ngFor="let paginationNumber of paginationArray" class="col">
+          <button class="btn btn-link" [disabled]="paginationNumber === (getPageNumber$() | async)" (click)="fetchSearchResults(paginationNumber)">
+            {{ paginationNumber }}
+          </button>
+          
+          <span
+            *ngIf="
+              (paginationNumber === paginationArray[paginationArray.length - 2]
+              && paginationNumber + 1 !== paginationArray[paginationArray.length - 1])
+              ||
+              (paginationNumber === 1
+              && paginationNumber + 1 < paginationArray[1])"
+            class="fw-bold ellpsis"
+          >
+            {{ '...' }}
+          </span>
+        </div>
+      </div>
     </div>
 
     <ng-template #noResults>

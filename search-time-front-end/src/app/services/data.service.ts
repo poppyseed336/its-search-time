@@ -1,7 +1,6 @@
 
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { Item } from '../models/item.model';
 import { SearchResults } from '../models/searchResults.model';
 
 @Injectable({
@@ -13,11 +12,15 @@ export class DataService {
     searchResults: [],
     numberOfResults: 0
   });
-  private pageNumber: number = 1;
+  private pageNumber:  BehaviorSubject<number> = new BehaviorSubject<number>(1);
   private title: string = "";
   private color: string = "";
 
   constructor() { }
+
+  getSearchResults(): SearchResults {
+    return this.searchResults.value;
+  }
 
   getSearchResults$(): Observable<SearchResults> {
     return this.searchResults.asObservable();
@@ -28,11 +31,15 @@ export class DataService {
   }
 
   getPageNumber(): number {
-    return this.pageNumber;
+    return this.pageNumber.value;
+  }
+
+  getPageNumber$(): Observable<number> {
+    return this.pageNumber.asObservable();
   }
 
   setPageNumber(newValue: number) {
-    this.pageNumber = newValue;
+    this.pageNumber.next(newValue);
   }
 
   getTitle(): string {

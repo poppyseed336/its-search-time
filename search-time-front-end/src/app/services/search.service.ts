@@ -14,7 +14,6 @@ export class SearchService {
   constructor(private dataService: DataService) { }
 
   fetchSearchResults() {
-
     axios.get(this.searchUrl, {
       params: {
         pageNumber: this.dataService.getPageNumber(),

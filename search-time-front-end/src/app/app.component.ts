@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgFor } from '@angular/common';
-import { SearchService } from './services/search.service';
 import { DataService } from './services/data.service';
+import { SearchService } from './services/search.service';
 import { SearchResultsTable } from './components/search-results-table/search-results-table.component';
 import { FormsModule } from '@angular/forms';
 
@@ -18,7 +18,7 @@ export class AppComponent {
   titleOfSearchItem = "";
   color = "";
 
-  constructor(private searchService: SearchService, private dataService: DataService) { }
+  constructor(private dataService: DataService, private searchService: SearchService) { }
 
   async fetchSearchResults() {
     this.dataService.setTitle(this.titleOfSearchItem);
