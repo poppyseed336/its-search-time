@@ -20,7 +20,7 @@
       </table>
 
       <div *ngIf="getPaginationArray$() | async as paginationArray" class="row w-50 mx-auto mt-4 mb-5">
-        <div *ngFor="let paginationNumber of paginationArray" class="col">
+        <div *ngFor="let paginationNumber of paginationArray" class="col text-center" >
           <button class="btn btn-link" [disabled]="paginationNumber === (getPageNumber$() | async)" (click)="fetchSearchResults(paginationNumber)">
             {{ paginationNumber }}
           </button>
