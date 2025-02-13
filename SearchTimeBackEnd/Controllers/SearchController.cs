@@ -22,10 +22,10 @@ namespace SearchTimeBackEnd.Controllers
         public async Task<ActionResult<SearchResultsViewModel>> Get(int pageNumber = 1, string title = "", string color = "")
         {
             // to-do: Implement this for the actual, live DB results
-            //SearchResultsViewModel results = await _searchService.GetSearchResults(pageNumber, title, color);
+            SearchResultsViewModel results = await _searchService.GetSearchResults(pageNumber, title, color);
 
             // to-do: remove this dummy data method and use live DB results
-            SearchResultsViewModel results = GetDummyData(title, color);
+            //SearchResultsViewModel results = GetDummyData(title, color);
 
             return Ok(results);
         }
