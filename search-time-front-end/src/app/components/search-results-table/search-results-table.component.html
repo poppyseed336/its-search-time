@@ -2,7 +2,11 @@
 <main class="main">
   <div class="content">
     <div *ngIf="searchResultItems && searchResultItems.length > 0; else noResults">
-      <table class="table table-striped w-50 mx-auto mt-5">
+      <div class="row text-center w-50 mx-auto mt-5">
+        <h3>Search results:</h3>
+      </div>
+
+      <table class="table table-striped w-50 mx-auto mt-1">
         <thead>
           <tr>
             <th scope="col">ID</th>
@@ -19,11 +23,11 @@
         </tbody>
       </table>
 
-      <div class="row text-center w-50 mx-auto mt-4">
-        <p>Select page:</p>
-      </div>
-
       <div *ngIf="getPaginationArray$() | async as paginationArray" class="row w-50 mx-auto mt-2 mb-5">
+        <div *ngIf="paginationArray.length > 0" class="row text-center mx-auto">
+          <p>Select page:</p>
+        </div>
+
         <div *ngFor="let paginationNumber of paginationArray" class="col text-center" >
           <button class="btn btn-link" [disabled]="paginationNumber === (getPageNumber$() | async)" (click)="fetchSearchResults(paginationNumber)">
             {{ paginationNumber }}
