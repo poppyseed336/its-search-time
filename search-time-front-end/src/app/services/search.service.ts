@@ -8,7 +8,7 @@ import { DataService } from './data.service';
 })
 
 export class SearchService {
-  private baseUrl = 'https://localhost:32769';
+  private baseUrl = 'https://localhost:32771';
   private searchUrl = `${ this.baseUrl }/Search`;
 
   constructor(private dataService: DataService) { }

@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 
 export class AppComponent {
   title = 'search-time-front-end';
-  colorOptions = ["black", "blue", "green", "purple", "red"];
+  colorOptions = ["black", "blue", "green", "purple", "red", "orange"];
   titleOfSearchItem = "";
   color = "";
 
