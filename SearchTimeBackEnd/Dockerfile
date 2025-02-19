@@ -35,7 +35,4 @@ USER root
 RUN chown root:root /app/wait-for-it.sh && chmod +x /app/wait-for-it.sh
 USER app
 
-# to-do: remove
-# ENTRYPOINT ["dotnet", "SearchTimeBackEnd.dll"]
-
 ENTRYPOINT ["/bin/bash", "-c", "/app/wait-for-it.sh db:1433 -- dotnet /app/SearchTimeBackEnd.dll"]
