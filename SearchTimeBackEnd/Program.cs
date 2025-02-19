@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using SearchTimeBackEnd.Services;
 using SearchTimeBackEnd.Models;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,10 @@ builder.Services.AddCors(options =>
 });
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.Listen(IPAddress.Any, 5000);  // Listen on all network interfaces, not just localhost
+});
 
 var app = builder.Build();
 
@@ -29,8 +34,14 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors("AllowLocalhost");
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    dbContext.Database.Migrate(); // Automatically apply any pending migrations and create the database if it doesn't exist
+}
 
 app.Run();

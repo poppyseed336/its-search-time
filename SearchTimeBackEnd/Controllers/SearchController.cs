@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SearchTimeBackEnd.Models.ViewModels;
 using SearchTimeBackEnd.Services;
-using System.Drawing;
 
 namespace SearchTimeBackEnd.Controllers
 {

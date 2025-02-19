@@ -1,12 +1,8 @@
-# See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
 # This stage is used when running from VS in fast mode (Default for Debug configuration)
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
-
+EXPOSE 5000
 
 # This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
@@ -14,7 +10,7 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["SearchTimeBackEnd.csproj", "."]
 RUN dotnet restore "./SearchTimeBackEnd.csproj"
-COPY . .
+COPY . . 
 WORKDIR "/src/."
 RUN dotnet build "./SearchTimeBackEnd.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
@@ -26,5 +22,20 @@ RUN dotnet publish "./SearchTimeBackEnd.csproj" -c $BUILD_CONFIGURATION -o /app/
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
 FROM base AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "SearchTimeBackEnd.dll"]
+COPY --from=publish /app/publish . 
+
+# Pass in environment variables (Connection String, etc) when the container runs
+ENV ASPNETCORE_URLS=http://+:5000
+
+# Copy the wait-for-it script into the container
+COPY wait-for-it.sh /app/wait-for-it.sh
+
+# Make sure the wait-for-it script is executable
+USER root
+RUN chown root:root /app/wait-for-it.sh && chmod +x /app/wait-for-it.sh
+USER app
+
+# to-do: remove
+# ENTRYPOINT ["dotnet", "SearchTimeBackEnd.dll"]
+
+ENTRYPOINT ["/bin/bash", "-c", "/app/wait-for-it.sh db:1433 -- dotnet /app/SearchTimeBackEnd.dll"]

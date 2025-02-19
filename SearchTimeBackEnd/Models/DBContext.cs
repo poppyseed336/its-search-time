@@ -13,7 +13,8 @@ namespace SearchTimeBackEnd.Models
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer(
-                    @"Server=localhost,1433;Database=search-time-sql-container;User Id=sa;Password=suchaS+r0ngp@ssword;ConnectRetryCount=0;TrustServerCertificate=True;");
+                    @"Server=search-time-database-container,1433;Database=search-time-database;User Id=sa;Password=suchaS+r0ngp@ssword;ConnectRetryCount=0;TrustServerCertificate=True;"); // to-do: remove this
+                    //@"Server=search-time-database-container,1433;Database=search-time-database;User Id=sa;Password=suchaS+r0ngp@ssword;ConnectRetryCount=0;TrustServerCertificate=True;"); // to-do: use this
             }
         }
 
